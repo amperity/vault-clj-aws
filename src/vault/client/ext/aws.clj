@@ -75,7 +75,7 @@
                              (bytes->str))})
 
 
-(defmethod client/authenticate-type! :aws-iam
+(defmethod client/authenticate* :aws-iam
   [client _ aws-ctx]
   (let [{:keys [iam-role test-credentials]} aws-ctx
         aws-creds ^AWSCredentials (or test-credentials (credentials))
