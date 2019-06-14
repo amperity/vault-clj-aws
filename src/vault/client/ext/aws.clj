@@ -93,7 +93,7 @@
 (defmethod client/authenticate* :aws-iam
   [client _ aws-ctx]
   (let [{:keys [iam-role credentials]} aws-ctx
-        aws-creds ^AWSCredentials (or credentials (credentials))
+        aws-creds ^AWSCredentials (or credentials (derive-credentials))
         request ^SignableRequest (sts-get-caller-identity-request)]
     ;; mutate in place, setting correct Authorization with signature
     (.sign (signer) request aws-creds)
