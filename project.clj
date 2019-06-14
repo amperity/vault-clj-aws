@@ -9,11 +9,12 @@
 
   :dependencies
   [[org.clojure/clojure "1.9.0"]
-   [amperity/vault-clj "0.6.5-SNAPSHOT"]
+   [amperity/envoy "0.3.1"]
+   [amperity/vault-clj "0.6.6"]
+   [buddy/buddy-core "1.4.0"]
+   [cheshire "5.8.0"]
 
    ; External dependencies
-   [cheshire "5.8.0"]
-   [buddy/buddy-core "1.4.0"]
    [com.amazonaws/aws-java-sdk-core "1.11.435"]]
 
   :profiles

@@ -5,6 +5,7 @@
     [cheshire.core :as json]
     [clj-http.client :as http]
     [clojure.java.io :as io]
+    [envoy.core :refer [defenv]]
     [vault.client.http :as client])
   (:import
     (com.amazonaws
@@ -18,6 +19,10 @@
       DefaultAWSCredentialsProviderChain)
     com.amazonaws.http.HttpMethodName
     java.net.URI))
+
+
+(defenv :vault-aws-iam-role
+  "The configured vault aws auth role used to perform instance authentication.")
 
 
 (def ^:private payload "Action=GetCallerIdentity&Version=2011-06-15")
