@@ -52,7 +52,7 @@
   ([id secret]
    (BasicAWSCredentials. id secret))
   ([]
-   (-> (DefaultAWSCredentialsProviderChain/getInstance)
+   (-> (DefaultAWSCredentialsProviderChain.)
        (.getCredentials))))
 
 
