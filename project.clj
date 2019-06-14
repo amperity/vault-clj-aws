@@ -9,13 +9,15 @@
 
   :dependencies
   [[org.clojure/clojure "1.9.0"]
+   [org.clojure/tools.logging "0.4.0"]
    [amperity/envoy "0.3.1"]
    [amperity/vault-clj "0.6.6"]
    [buddy/buddy-core "1.4.0"]
    [cheshire "5.8.0"]
 
    ; External dependencies
-   [com.amazonaws/aws-java-sdk-core "1.11.435"]]
+   [com.amazonaws/aws-java-sdk-core "1.11.435"
+    :exclusions [commons-logging org.apache.httpcomponents/httpcore]]]
 
   :profiles
   {:repl
