@@ -1,4 +1,4 @@
-(defproject amperity/vault-clj-aws "0.0.1-SNAPSHOT"
+(defproject amperity/vault-clj-aws "0.0.1"
   :description "Vault-clj extension to support aws iam instance authentication."
   :url "https://github.com/amperity/vault-clj-aws"
   :license {:name "Apache License"
@@ -9,7 +9,7 @@
 
   :dependencies
   [[org.clojure/clojure "1.9.0"]
-   [amperity/vault-clj "0.6.5-SNAPSHOT"]
+   [amperity/vault-clj "0.6.6"]
 
    ; External dependencies
    [cheshire "5.8.0"]
