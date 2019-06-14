@@ -9,12 +9,15 @@
     [vault.client.ext.aws :as ext]
     [vault.core :as vault])
   (:import
-    com.amazonaws.DefaultRequest
-    com.amazonaws.Request
-    com.amazonaws.SignableRequest
-    com.amazonaws.auth.AWS4Signer
-    com.amazonaws.auth.AWSCredentials
-    com.amazonaws.auth.BasicSessionCredentials
-    com.amazonaws.auth.DefaultAWSCredentialsProviderChain
-    com.amazonaws.http.HttpMethodName
+    (com.amazonaws
+      DefaultRequest
+      Request
+      SignableRequest)
+    (com.amazonaws.auth
+      AWS4Signer
+      AWSCredentials
+      BasicSessionCredentials
+      DefaultAWSCredentialsProviderChain)
+    (com.amazonaws.http
+      HttpMethodName)
     java.net.URI))

@@ -8,16 +8,17 @@
   :pedantic? :abort
 
   :dependencies
-  [[org.clojure/clojure "1.9.0"]
+  [[org.clojure/clojure "1.10.0"]
    [org.clojure/tools.logging "0.4.0"]
    [amperity/envoy "0.3.1"]
-   [amperity/vault-clj "0.6.6"]
-   [buddy/buddy-core "1.4.0"]
+   [amperity/vault-clj "0.6.6" :exclusions [commons-logging]]
    [cheshire "5.8.0"]
 
    ; External dependencies
    [com.amazonaws/aws-java-sdk-core "1.11.435"
-    :exclusions [commons-logging org.apache.httpcomponents/httpcore]]]
+    :exclusions [org.apache.httpcomponents/httpclient
+                 org.apache.httpcomponents/httpcore]]
+   [commons-logging "1.1.3"]]
 
   :profiles
   {:repl

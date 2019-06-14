@@ -1,7 +1,5 @@
 (ns vault.client.ext.aws
   (:require
-    [buddy.core.codecs :refer [bytes->str]]
-    [buddy.core.codecs.base64 :as b64]
     [cheshire.core :as json]
     [clj-http.client :as http]
     [clojure.java.io :as io]
@@ -15,10 +13,15 @@
     (com.amazonaws.auth
       AWS4Signer
       AWSCredentials
+      BasicAWSCredentials
       BasicSessionCredentials
       DefaultAWSCredentialsProviderChain)
-    com.amazonaws.http.HttpMethodName
-    java.net.URI))
+    (com.amazonaws.http
+      HttpMethodName)
+    (java.net
+      URI)
+    (java.util
+      Base64)))
 
 
 (defenv :vault-aws-iam-role
@@ -41,11 +44,13 @@
     (.setContent (-> payload (.getBytes "UTF-8") (io/input-stream)))))
 
 
-(defn credentials
+(defn derive-credentials
   "AWSCredentials to authenticate with STS. Will fall back to default chain including instance profile."
   ^AWSCredentials
   ([id secret token]
    (BasicSessionCredentials. id secret token))
+  ([id secret]
+   (BasicAWSCredentials. id secret))
   ([]
    (-> (DefaultAWSCredentialsProviderChain/getInstance)
        (.getCredentials))))
@@ -56,34 +61,39 @@
   ^AWS4Signer
   []
   (doto (AWS4Signer.)
-        (.setServiceName "sts")
-        (.setRegionName "us-east-1")))
+    (.setServiceName "sts")
+    (.setRegionName "us-east-1")))
+
+
+(defn- str->b64str
+  [^java.util.Base64$Encoder b64 ^String s]
+  (-> s
+    (.getBytes "UTF-8")
+    (->> (.encodeToString b64))))
 
 
 (defn- request-parameters
   "Takes signed aws Request object to derive parameters required by vault auth backend api call.
   https://www.vaultproject.io/api/auth/aws/index.html#login"
   [^Request req]
-  {"iam_http_request_method" (str (.getHttpMethod req))
-   "iam_request_url" (-> (format "%s%s"
-                                 (.getEndpoint req)
-                                 (.getResourcePath req))
-                         (b64/encode)
-                         (bytes->str))
-   "iam_request_body" (-> (.getContent req)
-                          (slurp)
-                          (b64/encode)
-                          (bytes->str))
-   "iam_request_headers" (-> (.getHeaders req)
-                             (json/encode)
-                             (b64/encode)
-                             (bytes->str))})
+  (let [b64encode (partial str->b64str (Base64/getEncoder))]
+    {"iam_http_request_method" (str (.getHttpMethod req))
+     "iam_request_url" (-> (format "%s%s"
+                                   (.getEndpoint req)
+                                   (.getResourcePath req))
+                           (b64encode))
+     "iam_request_body" (-> (.getContent req)
+                            (slurp)
+                            (b64encode))
+     "iam_request_headers" (-> (.getHeaders req)
+                               (json/encode)
+                               (b64encode))}))
 
 
 (defmethod client/authenticate* :aws-iam
   [client _ aws-ctx]
-  (let [{:keys [iam-role test-credentials]} aws-ctx
-        aws-creds ^AWSCredentials (or test-credentials (credentials))
+  (let [{:keys [iam-role credentials]} aws-ctx
+        aws-creds ^AWSCredentials (or credentials (credentials))
         request ^SignableRequest (sts-get-caller-identity-request)]
     ;; mutate in place, setting correct Authorization with signature
     (.sign (signer) request aws-creds)
