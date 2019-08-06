@@ -41,7 +41,7 @@
     (.setHttpMethod HttpMethodName/POST)
     (.addHeader "Content-Type" "application/x-www-form-urlencoded; charset=utf-8")
     (.addHeader "Content-Length" "43")
-    (.setContent (-> payload (.getBytes "UTF-8") (io/input-stream)))))
+    (.setContent (-> ^String payload (.getBytes "UTF-8") (io/input-stream)))))
 
 
 (defn derive-credentials
