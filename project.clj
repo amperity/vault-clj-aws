@@ -1,4 +1,4 @@
-(defproject amperity/vault-clj-aws "0.0.2-SNAPSHOT"
+(defproject amperity/vault-clj-aws "0.0.3-SNAPSHOT"
   :description "Vault-clj extension to support aws iam instance authentication."
   :url "https://github.com/amperity/vault-clj-aws"
   :license {:name "Apache License"
