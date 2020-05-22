@@ -3,6 +3,7 @@
     [cheshire.core :as json]
     [clj-http.client :as http]
     [clojure.java.io :as io]
+    [clojure.string :as str]
     [envoy.core :refer [defenv]]
     [vault.client.http :as client])
   (:import
@@ -26,6 +27,10 @@
 
 (defenv :vault-aws-iam-role
   "The configured vault aws auth role used to perform instance authentication.")
+
+
+(defenv :vault-aws-sts-region
+  "The AWS region to sign the GetCallerIdentity request for.")
 
 
 (def ^:private payload "Action=GetCallerIdentity&Version=2011-06-15")
@@ -59,10 +64,10 @@
 (defn signer
   "Signing object used to perform AWS4 signing on sts request object."
   ^AWS4Signer
-  []
+  [region]
   (doto (AWS4Signer.)
     (.setServiceName "sts")
-    (.setRegionName "us-east-1")))
+    (.setRegionName region)))
 
 
 (defn- str->b64str
@@ -92,11 +97,14 @@
 
 (defmethod client/authenticate* :aws-iam
   [client _ aws-ctx]
-  (let [{:keys [iam-role credentials]} aws-ctx
+  (let [{:keys [iam-role credentials sts-region]} aws-ctx
+        signing-region (if-not (str/blank? sts-region)
+                         sts-region
+                         "us-east-1")
         aws-creds ^AWSCredentials (or credentials (derive-credentials))
         request ^SignableRequest (sts-get-caller-identity-request)]
     ;; mutate in place, setting correct Authorization with signature
-    (.sign (signer) request aws-creds)
+    (.sign (signer signing-region) request aws-creds)
     (client/api-auth!
       (str "AWS IAM Role " iam-role)
       (:auth client)
