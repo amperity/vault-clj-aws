@@ -68,8 +68,8 @@
 (defn- str->b64str
   [^java.util.Base64$Encoder b64 ^String s]
   (-> s
-    (.getBytes "UTF-8")
-    (->> (.encodeToString b64))))
+      (.getBytes "UTF-8")
+      (->> (.encodeToString b64))))
 
 
 (defn- request-parameters

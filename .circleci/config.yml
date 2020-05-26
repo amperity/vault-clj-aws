@@ -44,27 +44,6 @@ jobs:
           paths:
             - ~/.m2
 
-  coverage:
-    executor: clojure
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-coverage-{{ checksum "project.clj" }}
-            - v1-coverage-
-            - v1-test-
-      - run: lein cloverage --codecov
-      - save_cache:
-          key: v1-coverage-{{ checksum "project.clj" }}
-          paths:
-            - ~/.m2
-      - store_artifacts:
-          path: target/coverage
-          destination: coverage
-      - run:
-          name: Publish Coverage
-          command: 'bash <(curl -s https://codecov.io/bash) -f target/coverage/codecov.json'
-
 
 # Workflow definitions
 workflows:
@@ -73,6 +52,3 @@ workflows:
     jobs:
       - style
       - test
-      - coverage:
-          requires:
-            - test
