@@ -1,7 +1,6 @@
 (ns vault.client.ext.aws
   (:require
     [cheshire.core :as json]
-    [clj-http.client :as http]
     [clojure.java.io :as io]
     [clojure.string :as str]
     [envoy.core :refer [defenv]]
