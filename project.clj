@@ -10,7 +10,7 @@
   :dependencies
   [[org.clojure/clojure "1.11.1"]
    [org.clojure/tools.logging "1.2.4"]
-   [amperity/envoy "1.0.0"]
+   [amperity/envoy "1.0.1"]
    [amperity/vault-clj "1.1.3"]
    [cheshire "5.11.0"]
 
