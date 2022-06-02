@@ -8,14 +8,14 @@
   :pedantic? :abort
 
   :dependencies
-  [[org.clojure/clojure "1.10.1"]
-   [org.clojure/tools.logging "0.5.0"]
-   [amperity/envoy "0.3.3"]
-   [amperity/vault-clj "0.7.0"]
-   [cheshire "5.9.0"]
+  [[org.clojure/clojure "1.11.1"]
+   [org.clojure/tools.logging "1.2.4"]
+   [amperity/envoy "1.0.1"]
+   [amperity/vault-clj "1.1.3"]
+   [cheshire "5.11.0"]
 
-   ; External dependencies
-   [com.amazonaws/aws-java-sdk-core "1.11.604"
+   ;; External dependencies
+   [com.amazonaws/aws-java-sdk-core "1.12.230"
     :exclusions [org.apache.httpcomponents/httpclient
                  org.apache.httpcomponents/httpcore]]
    [commons-logging "1.2"]]
@@ -24,4 +24,4 @@
   {:repl
    {:source-paths ["dev"]
     :dependencies
-    [[org.clojure/tools.namespace "0.3.1"]]}})
+    [[org.clojure/tools.namespace "1.3.0"]]}})

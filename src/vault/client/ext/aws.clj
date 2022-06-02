@@ -1,11 +1,11 @@
 (ns vault.client.ext.aws
   (:require
     [cheshire.core :as json]
-    [clj-http.client :as http]
     [clojure.java.io :as io]
     [clojure.string :as str]
     [envoy.core :refer [defenv]]
-    [vault.client.http :as client])
+    [vault.authenticate :as auth]
+    [vault.client.api-util :as util])
   (:import
     (com.amazonaws
       DefaultRequest
@@ -95,7 +95,7 @@
                                (b64encode))}))
 
 
-(defmethod client/authenticate* :aws-iam
+(defmethod auth/authenticate* :aws-iam
   [client _ aws-ctx]
   (let [{:keys [iam-role credentials sts-region]} aws-ctx
         signing-region (if-not (str/blank? sts-region)
@@ -105,10 +105,10 @@
         request ^SignableRequest (sts-get-caller-identity-request)]
     ;; mutate in place, setting correct Authorization with signature
     (.sign (signer signing-region) request aws-creds)
-    (client/api-auth!
+    (auth/api-auth!
       (str "AWS IAM Role " iam-role)
       (:auth client)
-      (client/do-api-request
+      (util/do-api-request
         :post (str (:api-url client) "/v1/auth/aws/login")
         (merge
           (:http-opts client)
