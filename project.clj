@@ -11,7 +11,7 @@
   [[org.clojure/clojure "1.11.1"]
    [org.clojure/tools.logging "1.2.4"]
    [amperity/envoy "1.0.1"]
-   [com.amperity/vault-clj "2.0.0-SNAPSHOT"]
+   [com.amperity/vault-clj "2.2.586"]
 
    ;; External dependencies
    [com.amazonaws/aws-java-sdk-core "1.12.230"
