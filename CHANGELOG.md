@@ -6,7 +6,10 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [Unreleased]
 
-...
+* Updated to vault-clj 2.x APIs
+* Removed dependency on `amperity/envoy`
+* The login method now uses AWS Java SDK's default credentials provider chain and
+  default region provider chain.
 
 ## [0.0.4] - 2022-06-02
 
