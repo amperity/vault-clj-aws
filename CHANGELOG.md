@@ -7,13 +7,17 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ## [Unreleased]
 
 * Project artifacts are now published as `com.amperity/vault-clj-aws`.
-* The project now depends on `com.amperity/vault-clj-aws` 2.x which has
-  completely new APIs; see that project for details.
+* The project now depends on and integrates with
+  [com.amperity/vault-clj](https://github.com/amperity/vault-clj) 2.x. This has
+  completely new APIs compared to the old `amperity/vault-clj` 1.x and earlier.
+  See the vault-clj repo for details.
 * The login method now uses the AWS Java SDK's default credentials provider chain and
-  default region provider chain for ease of use.
-* The login method now supports all the extra parameters documented by Vault
-  <https://developer.hashicorp.com/vault/api-docs/auth/aws#login>. The
-  `iam_*` parameters are still auto-generated for ease of use.
+  default region provider chain.
+* The `login` method now supports all the extra parameters documented by Vault
+  <https://developer.hashicorp.com/vault/api-docs/auth/aws#login>, as keywords. Notably,
+  `:role` can be passed as a parameter to the `login` method to allow a single
+  AWS principal to log in to different Vault roles. The `iam_*` parameters are
+  still auto-generated for ease of use.
 * Removed unused dependencies.
 
 ## [0.0.4] - 2022-06-02
