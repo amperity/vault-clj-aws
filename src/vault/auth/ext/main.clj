@@ -1,8 +1,8 @@
 (ns vault.auth.ext.main
   (:gen-class)
   (:require
-    [vault.client.http :as http]
-    [vault.auth.ext.aws :as aws]))
+    [vault.auth.ext.aws :as aws]
+    [vault.client.http :as http]))
 
 
 (defn -main
