@@ -11,8 +11,9 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
   completely new APIs; see that project for details.
 * The login method now uses the AWS Java SDK's default credentials provider chain and
   default region provider chain for ease of use.
-* The login method now supports all the extra parameters documented by Vault,
-  though the `iam_*` parameters are still auto-generated for ease of use.
+* The login method now supports all the extra parameters documented by Vault
+  <https://developer.hashicorp.com/vault/api-docs/auth/aws#login>. The
+  `iam_*` parameters are still auto-generated for ease of use.
 * Removed unused dependencies.
 
 ## [0.0.4] - 2022-06-02
