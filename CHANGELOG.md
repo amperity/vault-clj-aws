@@ -8,7 +8,7 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 * Project artifacts are now published as `com.amperity/vault-clj-aws`.
 * The project now depends on and integrates with
-  [com.amperity/vault-clj](https://github.com/amperity/vault-clj) 2.x. This has
+  [`com.amperity/vault-clj`](https://github.com/amperity/vault-clj) 2.x. This has
   completely new APIs compared to the old `amperity/vault-clj` 1.x and earlier.
   See the vault-clj repo for details.
 * The login method now uses the AWS Java SDK's default credentials provider chain and
