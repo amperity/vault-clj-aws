@@ -10,5 +10,5 @@
   (let [vault-addr (or (System/getenv "VAULT_ADDR")
                        (throw (Exception. "VAULT_ADDR is not set!")))
         client (http/http-client vault-addr)]
-    (aws/login client {})
+    (prn (aws/login client {}))
     (prn client)))
