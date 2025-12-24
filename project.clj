@@ -4,7 +4,7 @@
   :license {:name "Apache License"
             :url "http://www.apache.org/licenses/LICENSE-2.0"}
 
-  :deploy-branches ["master"]
+  :deploy-branches ["main"]
 
   :dependencies
   [[org.clojure/clojure "1.12.2"]
