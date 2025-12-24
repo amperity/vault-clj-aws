@@ -1,4 +1,4 @@
-(defproject com.amperity/vault-clj-aws "2.0.0"
+(defproject com.amperity/vault-clj-aws "2.0.0-SNAPSHOT"
   :description "Vault-clj extension that implements the AWS auth method."
   :url "https://github.com/amperity/vault-clj-aws"
   :license {:name "Apache License"
