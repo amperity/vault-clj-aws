@@ -1,27 +1,21 @@
-(defproject amperity/vault-clj-aws "0.0.5-SNAPSHOT"
-  :description "Vault-clj extension to support aws iam instance authentication."
+(defproject com.amperity/vault-clj-aws "2.0.0"
+  :description "Vault-clj extension that implements the AWS auth method."
   :url "https://github.com/amperity/vault-clj-aws"
   :license {:name "Apache License"
             :url "http://www.apache.org/licenses/LICENSE-2.0"}
 
   :deploy-branches ["master"]
-  :pedantic? :abort
 
   :dependencies
-  [[org.clojure/clojure "1.11.1"]
-   [org.clojure/tools.logging "1.2.4"]
-   [amperity/envoy "1.0.1"]
-   [amperity/vault-clj "1.1.3"]
-   [cheshire "5.11.0"]
+  [[org.clojure/clojure "1.12.2"]
+
+   [com.amperity/vault-clj "2.3.588"]
+   [org.clojure/data.json "2.5.1"]
 
    ;; External dependencies
-   [com.amazonaws/aws-java-sdk-core "1.12.230"
-    :exclusions [org.apache.httpcomponents/httpclient
-                 org.apache.httpcomponents/httpcore]]
-   [commons-logging "1.2"]]
+   [software.amazon.awssdk/sts "2.40.13"]
+   [software.amazon.awssdk/http-auth-aws "2.40.13"]]
 
   :profiles
   {:repl
-   {:source-paths ["dev"]
-    :dependencies
-    [[org.clojure/tools.namespace "1.3.0"]]}})
+   {:source-paths ["dev"]}})
