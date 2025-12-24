@@ -13,7 +13,7 @@
    [org.clojure/data.json "2.5.1"]
 
    ;; External dependencies
-   [software.amazon.awssdk/sts "2.40.13"]
+   [software.amazon.awssdk/auth "2.40.13"]
    [software.amazon.awssdk/http-auth-aws "2.40.13"]]
 
   :profiles

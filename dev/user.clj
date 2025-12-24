@@ -9,7 +9,7 @@
 
 
 (def vault-client
-  (vault/new-client vault-addr))
+  nil)
 
 
 (defn start
