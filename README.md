@@ -33,4 +33,12 @@ Log in to Vault using AWS credentials:
 ```
 
 If the AWS auth method is mounted at a non-default location,
-configure the mount point on the client using `with-mount`.
+call `vault.auth.was/with-mount` on the Vault client before using it.
+
+
+## Development
+
+Start a REPL with `lein repl`. Initialize and start the Vault client with `(start)`.
+The Vault client will be bound to `vault-client`. See the example code in [dev/user.clj](dev/user.clj).
+
+This uses the `VAULT_ADDR` environment variable and AWS Java SDK default credentials provider chain.

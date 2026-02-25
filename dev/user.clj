@@ -7,17 +7,13 @@
       AwsSessionCredentials)))
 
 
-(def vault-addr
-  "https://vault.example.com:8200")
-
-
 (def vault-client
   nil)
 
 
 (defn start
   []
-  (alter-var-root #'vault-client (constantly (vault/new-client vault-addr)))
+  (alter-var-root #'vault-client (constantly (vault/new-client (System/getenv "VAULT_ADDR"))))
   (alter-var-root #'vault-client vault/start))
 
 
