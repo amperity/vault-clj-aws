@@ -5,7 +5,7 @@
 
 
 (def vault-addr
-  "https://vault.dev.amperity.systems:8200")
+  "https://vault.example.com:8200")
 
 
 (def vault-client
