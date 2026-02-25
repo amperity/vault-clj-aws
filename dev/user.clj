@@ -1,7 +1,10 @@
 (ns user
   (:require
     [vault.auth.aws :as aws]
-    [vault.client :as vault]))
+    [vault.client :as vault])
+  (:import
+    (software.amazon.awssdk.auth.credentials
+      AwsSessionCredentials)))
 
 
 (def vault-addr
@@ -25,7 +28,6 @@
 
 
 (comment
-  (import 'software.amazon.awssdk.auth.credentials.AwsSessionCredentials)
   (def session-credentials
     (AwsSessionCredentials/create
       "access-key-id"
