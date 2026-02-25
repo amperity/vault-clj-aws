@@ -8,4 +8,4 @@ pom.xml.asc
 /.lein-*
 /.nrepl-port
 .lsp
-.clj-kondo
+.clj-kondo/cache
