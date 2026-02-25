@@ -1,6 +1,9 @@
 vault-clj-aws
 =============
 
+[![Clojars Project](https://img.shields.io/clojars/v/com.amperity/vault-clj-aws.svg)](https://clojars.org/com.amperity/vault-clj-aws)
+[![cljdoc](https://cljdoc.org/badge/com.amperity/vault-clj-aws)](https://cljdoc.org/d/com.amperity/vault-clj-aws/CURRENT)
+
 An extension to [com.amperity/vault-clj](https://github.com/amperity/vault-clj)
 that implements the [AWS auth method](https://www.vaultproject.io/api/auth/aws/).
 
