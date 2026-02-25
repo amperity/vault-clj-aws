@@ -19,8 +19,8 @@ jobs:
           environment:
             CLJSTYLE_VERSION: 0.17.642
           command: |
-            wget -O cljstyle.tgz https://github.com/greglook/cljstyle/releases/download/${CLJSTYLE_VERSION}/cljstyle_${CLJSTYLE_VERSION}_linux_amd64.tar.gz
-            tar -xzf cljstyle.tgz
+            wget -O cljstyle.zip https://github.com/greglook/cljstyle/releases/download/${CLJSTYLE_VERSION}/cljstyle_${CLJSTYLE_VERSION}_linux_amd64.zip
+            unzip cljstyle.zip
       - run:
           name: Check source formatting
           command: "./cljstyle check --stats style-stats.tsv"
