@@ -36,7 +36,7 @@ Log in to Vault using AWS credentials:
 ```
 
 If the AWS auth method is mounted at a non-default location,
-call `vault.auth.was/with-mount` on the Vault client before using it.
+call `vault.auth.aws/with-mount` on the Vault client before using it.
 
 
 ## Development
